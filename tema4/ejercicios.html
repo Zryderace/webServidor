@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Ejercicio 1</h2>
+    <!--cambiar el action para redirigirlo-->
+    <form action="/tema4/ejercicios.php" method="GET">
+        <input type="hidden" name="form" value="ej1">
+        Nombre: <input type="text" name="nombre" id="nombre">
+        edad: <input type="number" name="edad" id="edad">
+        <input type="submit" value="Enviar">
+    </form>
+    <h2>Ejercicio 2</h2>
+    
+    <form action="/tema4/ejercicios.php" method="POST">
+        <input type="hidden" name="form" value="ej2">
+        Nombre: <input required type="text" name="nombre" id="nombre">
+        EDAD: <input required type="number" name="edad" id="edad" min="1">
+        correo: <input required type="email" name="correo" id="correo">
+        <input type="submit" value="Enviar">
+    </form>
+    <h2>Ejercicio 3</h2>
+    
+    <form action="/tema4/ejercicios.php" method="POST">
+        <input type="hidden" name="form" value="ej3">
+        Texto: <textarea required minlength="10" name="texto" id="texto"></textarea>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

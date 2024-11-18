@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Formularios</h2>
+
+    <ol>
+        <li>Formulario con nombre edad y correo y envie datos mediante POST, procesa los datos en un archivo php y muestra la info</li>
+        <li>Formulario con nombre, correo y pass, valida que el nombre no este vacio, la pass tenga al menos 8 caracteres, la edad menor 110
+            mostrar cada error por pantalla
+        </li>
+    
+    </ol>
+    <h2>Ejercicio 1</h2>
+    
+    <form action="/tema4/form.php" method="POST">
+        <input type="hidden" name="form" value="ej1">
+        Nombre: <input type="text" name="nombre" id="nombre">
+        Apellidos: <input type="text" name="apellidos" id="apellidos">
+        <input type="submit" value="Enviar">
+    </form>
+    <h2>Ejercicio 2</h2>
+    
+    <form action="/tema4/form.php" method="POST">
+        <input type="hidden" name="form" value="ej2">
+        Nombre: <input type="text" name="nombre" id="nombre">
+        Apellidos: <input type="text" name="apellidos" id="apellidos">
+        correo: <input type="email" name="correo">
+        <input type="submit" value="Enviar">
+    </form>
+    <h2>Ejercicio 3</h2>
+    
+    <form action="/tema4/form.php" method="POST">
+        <input type="hidden" name="form" value="ej3">
+        Nombre: <input type="text" name="nombre" id="nombre">
+        correo: <input type="email" name="correo">
+        edad: <input type="number" max="109" min="18" name="edad">
+        <input type="submit" value="Enviar">
+    </form>
+
+    
+</body>
+</html>

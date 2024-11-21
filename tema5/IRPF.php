@@ -57,29 +57,36 @@
                         if($temp_bruto <= 0){
                             $err_bruto = "<span class='error'>el precio no puede ser negativo</span>";
                         }else{
-                            $bruto = $temp_bruto;
+                            $neto = calcularIRPF($temp_bruto);
                         }
                     }
                 }
 
-                $final = null;
+                // $final = null;
 
-                $tramo1 = 12450 * 0.19;
-                $tramo2 = (20200-12450) * 0.24;
-                $tramo3 = (35200-20200) * 0.3;
-                $tramo4 = (60000-35200) * 0.37;
-                $tramo5 = (300000-60000) * 0.45;
+                // $tramo1 = 12450 * 0.19;
+                // $tramo2 = (20200-12450) * 0.24;
+                // $tramo3 = (35200-20200) * 0.3;
+                // $tramo4 = (60000-35200) * 0.37;
+                // $tramo5 = (300000-60000) * 0.45;
 
-                if (isset($bruto)) {
-                    if ($salario<12450) {
-                        $final = $bruto - $tramo1;
-                    } elseif ($salario < 20200) {
-                        $final = $bruto - $tramo1 - $tramo2;
-                    } elseif ($salario < 35200) {
-                        $final = $bruto - $tramo1 - $tramo2 - $tramo3;
-                    } elseif ($salario<=12450 && $salario < 20200) {
-                        $final = $bruto - $tramo1 - $tramo2;
-                    }
+                // if (isset($bruto)) {
+                //     if ($salario<12450) {
+                //         $final = $bruto - $tramo1;
+                //     } elseif ($salario < 20200) {
+                //         $final = $bruto - $tramo1 - $tramo2;
+                //     } elseif ($salario < 35200) {
+                //         $final = $bruto - $tramo1 - $tramo2 - $tramo3;
+                //     } elseif ($salario<=12450 && $salario < 20200) {
+                //         $final = $bruto - $tramo1 - $tramo2;
+                //     }
+                // }
+
+                echo $neto;
+                if (isset($neto)) {
+                    echo `el salario neto es $neto`;
+                } else if(isset($err_bruto)) {
+                    echo $err_bruto;
                 }
                 
 
@@ -94,6 +101,14 @@
         <br>
         <input type="submit" value="Enviar">
     </form>
+
+    <?php
+    if (isset($neto)) {
+        echo `el salario neto es $neto`;
+    } else if(isset($err_bruto)) {
+        echo $err_bruto;
+    }
+    ?>
 
 
 

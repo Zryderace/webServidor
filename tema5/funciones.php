@@ -56,4 +56,70 @@
         }
         return $var;
     }
+
+    
+
+    define("GENERAL",1.21);
+    define("REDUCIDO",1.10);
+    define("SUPERREDUCIDO",1.04);
+
+    function calcularDescuento(float $precio,int $descuento) : float {
+
+        //return $precio -= ($precio * $descuento) /100;
+        $descuento_decimal = $descuento /100;
+        $descuento_aplicado = $precio * $descuento_decimal;
+        $precio_final = $precio - $descuento_aplicado;
+
+        return $precio_final;
+    }
+    function calcularIRPF(float $salario): float{
+
+        $tramos = [
+        ["limite_inferior" => 0,"limite_superior"=>12450, "porcentaje" => 0.19],
+        ["limite_inferior" => 12450,"limite_superior"=>20200, "porcentaje" => 0.24],
+        ["limite_inferior" => 20200,"limite_superior"=>35200, "porcentaje" => 0.30],
+        ["limite_inferior" => 35200,"limite_superior"=>60000, "porcentaje" => 0.37],
+        ["limite_inferior" => 60000,"limite_superior"=>300000, "porcentaje" => 0.45],
+        ["limite_inferior" => 300000,"limite_superior"=>INF, "porcentaje" => 0.47]
+        ];
+
+        $acumulador_impuesto = 0;
+
+        foreach($tramos as $tramo){
+            if($salario > $tramo["limite_inferior"]){
+                $rango_imponible = min($salario, $tramo["limite_superior"]) - $tramo["limite_inferior"];
+                $acumulador_impuesto += $rango_imponible * $tramo["porcentaje"];
+            }else{
+                break;
+            }
+            
+        }   
+        return $salario - $acumulador_impuesto;
+    }
+    function calcularIVA(float $precio, string $iva): float{
+
+        $var =  match($iva){
+            "general" => $precio * GENERAL,
+            "reducido" => $precio * REDUCIDO,
+            "superreducido" => $precio * SUPERREDUCIDO
+            };
+        return $var;
+    }
+    function sanear($nombre): string{
+        $nombre = htmlspecialchars($nombre);
+        $nombre = preg_replace("/\s+/"," ",trim($nombre));
+
+        return $nombre;
+    }
+    function validar($edad): bool | string | int {
+        if($edad == ""){
+            return false;
+        }else if($edad < 0){
+            return "Tienes una edad negativa";
+        }else if(filter_var($edad,FILTER_VALIDATE_INT)==false){
+            return "No has introducido un número entero";
+        }else{
+            return $edad;
+        }
+    }
 ?>

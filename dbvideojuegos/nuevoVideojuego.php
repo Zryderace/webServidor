@@ -85,7 +85,7 @@
         if (!filter_var(filter_var($anno_lanzamiento,FILTER_SANITIZE_NUMBER_INT),FILTER_VALIDATE_INT)) {
             $anno_lanzamiento = "";
             $err_annoLanzamiento = "introduce un año valido";
-        } else if ($anno_lanzamiento<1975||$anno_lanzamiento>2024) {
+        } else if ($anno_lanzamiento<1975||$anno_lanzamiento>2025) {
             $anno_lanzamiento = "";
             $err_annoLanzamiento = "el ano es demasiado pequeño o grande";
         }
@@ -93,7 +93,7 @@
         //porcentaje reseñas
         //reseñas puede ser vacio
         if ($porcentaje_reseñas=="") {
-            $porcentaje_reseñas = "null";
+            $porcentaje_reseñas = NULL;
         }else if (!filter_var(filter_var($porcentaje_reseñas,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION),FILTER_VALIDATE_FLOAT)) {
             $porcentaje_reseñas = "";
             $err_porcentajeReseñas = "introduce un numero valido";
@@ -107,7 +107,7 @@
         if (!filter_var(filter_var($horas_duracion,FILTER_SANITIZE_NUMBER_INT),FILTER_VALIDATE_INT)) {
             $horas_duracion = "";
             $err_horasDuracion = "introduce unas horas validas";
-        } else if ($horas_duracion<0) {
+        } else if ($horas_duracion<-1) {
             $horas_duracion = "";
             $err_horasDuracion = "las horas no pueden ser negativas";
         }        
@@ -116,6 +116,8 @@
 
         if ($titulo != "" && $nombre_desarrolladora != "" && $anno_lanzamiento != "" && $porcentaje_reseñas != "" && $horas_duracion != "") {
             $_conexion->query($consulta);
+        } else {
+            //mensajito de error
         }
     }
 

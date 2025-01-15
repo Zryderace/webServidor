@@ -19,7 +19,7 @@
             $usuario = $_POST["usuario"];
             $contrasena = $_POST["contrasena"];
 
-            $consulta = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
+            $consulta = "SELECT * FROM usuario WHERE usuario = '$usuario'";
             $res = $_conexion -> query($consulta);
 
             if($res -> num_rows == 0){

@@ -9,7 +9,7 @@
         error_reporting(E_ALL);
         ini_set("display_errors",1);
         require "../conexion.php";
-
+    //aqui no se pone session start
     ?>
 </head>
 <body>

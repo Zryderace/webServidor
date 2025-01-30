@@ -1,9 +1,9 @@
 <?php
 
     $_servidor = "localhost";
-    $_usuario = "admin"; //root
-    $_pass = "pass1234"; //""
-    $_DBName = "videojuegos_bd";
+    $_usuario = "root"; //root
+    $_pass = ""; //""
+    $_DBName = "tienda_bd";
 
     $_conexion = new mysqli($_servidor,$_usuario,$_pass,$_DBName);
 

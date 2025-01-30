@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <h1>importante load y unload necesitan server</h1>
+    <button id="cargar">Cargar contenido</button>
+    <div id="resultado"></div>
+
+
+    <script>
+        $(document).ready(function(){
+            $("#cargar").on("click", function(){
+                //carga cotenido del archivo en el Div
+                $("#resultado").load("objetivo.html")
+            })
+        })
+        $(document).ready(function(){
+            $(window).on("beforeunload", function(){
+                //carga cotenido del archivo en el Div
+                return "Seguro que quieres salir?"
+            })
+        })
+    </script>
+</body>
+</html>

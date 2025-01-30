@@ -1,0 +1,82 @@
+MIRAR CONEXION.PHP
+CONEXIONNNN TIENE BUENA DATA
+
+ESTO AL PRINCIPIO DE TODOS - SIGN IN
+
+<?php
+        error_reporting(E_ALL);
+        ini_set("display_errors",1);
+        require "conexion.php";
+        //esto en todas menos inicio DE SESION
+        session_start();
+        if (!isset($_SESSION["usuario"])) {
+            header("location: registro.php");
+            exit;
+        }
+    ?>
+
+CONSULTA EDITAR
+
+$consulta = "UPDATE videojuegos SET
+                            titulo = '$nombre',
+                            nombre_desarrolladora = '$desarrolladora',
+                            anno_lanzamiento = $lanzamiento,
+                            resennas = $resenas,
+                            horas_duracion = $duracion 
+                            WHERE id_videojuego = $id_videojuego";
+            $_conexion -> query($consulta);
+
+CONSULTA METER COSAS
+
+$consulta = "INSERT INTO videojuegos 
+            (
+                titulo,
+                nombre_desarrolladora,
+                anno_lanzamiento,
+                porcentaje_reseñas,
+                horas_duracion
+            )
+            VALUES (
+                '$titulo',
+                '$nombre_desarrolladora',
+                $anno_lanzamiento,
+                $porcentaje_reseñas,
+                $horas_duracion
+            )";
+
+SELECCIONAR Y METER EN UN ARRAY
+
+$consulta = "SELECT * FROM desarrolladoras ORDER BY nombre_desarrolladora";
+    $resultado = $_conexion->query($consulta);
+    $desarrolladoras = [];
+    while ($fila = $resultado->fetch_assoc()) {
+        array_push($desarrolladoras, $fila["nombre_desarrolladora"]);
+    }
+
+IMPRIMIR DICHO ARRAY
+
+<select name="nombre_desarrolladora">
+            <option value="" disabled selected>
+            </option>
+            <?php
+                foreach ($desarrolladoras as $desarrolladora) {
+                    echo "<option value=\"$desarrolladora\">$desarrolladora</option>";
+                }
+            ?>
+        </select>
+
+BORRAR COSITAS
+
+<?php
+        if ($_SERVER["REQUEST_METHOD"]=="POST") {
+            if(isset($_POST["id_videojuego"]))$id_videojuego = $_POST["id_videojuego"]; else $id_videojuego="";
+            echo $id_videojuego;
+            if ($id_videojuego!="") {
+                $consulta = "DELETE FROM videojuegos WHERE id_videojuego = $id_videojuego";
+                $_conexion -> query($consulta);
+            } else {
+                
+            }
+            
+        }
+    ?>

@@ -63,7 +63,7 @@
                             horas_duracion = '$horas_duracion'
                         WHERE id_videojuego = '$id_videojuego';";
 
-        $_conexion->query($consulta);
+        $_conexion->query($consulta);   
     }
 
     ?>
@@ -72,14 +72,12 @@
         <input type="text" name="titulo" value="<?php echo $juego["titulo"] ?>">
         <select name="nombre_desarrolladora">
             <option value="" disabled selected>
-                
             </option>
             <?php
                 foreach ($desarrolladoras as $desarrolladora) {
                     echo "<option value=\"$desarrolladora\">$desarrolladora</option>";
                 }
-                ?>
-
+            ?>
         </select>
         <input type="text" name="anno_lanzamiento" value="<?php echo $juego["anno_lanzamiento"] ?>">
         <input type="text" name="porcentaje_reseñas" value="<?php echo $juego["porcentaje_reseñas"] ?>">

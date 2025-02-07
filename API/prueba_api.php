@@ -6,6 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script>
+        function mostrarFormulario() {
+            let metodoSeleccionado = document.querySelector("select[name=metodo]").value
+            // console.log(metodoSeleccionado)
+            let campoGet = document.getElementById("campoGet")
+            let campoPostPut = document.getElementById("campoPostPut")
+            let campoDelete = document.getElementById("campoDelete")
+
+            document.getElementById("campoBoton").style.display = "block"
+
+            campoGet.style.display="none"
+            campoPostPut.style.display="none"
+            campoDelete.style.display="none"
+
+            if (metodoSeleccionado=="GET") {
+                campoGet.style.display="block"
+            } else if(metodoSeleccionado=="POST"||metodoSeleccionado=="PUT") {
+                campoPostPut.style.display="block"
+            } else if (metodoSeleccionado=="DELETE") {
+                campoDelete.style.display="block"
+            }
+
+        }
+    </script>
 </head>
 
 <body>
@@ -15,20 +39,29 @@
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">Seleccionar el metodo</label>
-                <select name="metodo" class="form-select">
+                <select name="metodo" class="form-select" onchange="mostrarFormulario()">
+                    <option value="" selected disabled>Selecciona metodo</option>
                     <option value="GET">GET(Recuperar datos)</option>
                     <option value="POST">POST(Insertar datos)</option>
                     <option value="PUT">PUT(Cambiar datos)</option>
                     <option value="DELETE">DELETE(borrar datos)</option>
                 </select>
             </div>
-            <div id="datosPost" class="mb-3">
-                <label class="form-label">Datos para POST:</label>
+            <div id="campoGet" class="mb-3" style="display: none;">
+                <label class="form-label">Datos para GET:</label>
+                <input type="text" name="nombre_desarrolladora" class="form-control" placeholder="Nombre desarrolladora">
+            </div>
+            <div id="campoPostPut" class="mb-3" style="display: none;">
+                <label class="form-label">Datos para POST o PUT:</label>
                 <input type="text" name="nombre_desarrolladora" class="form-control" placeholder="Nombre desarrolladora">
                 <input type="text" name="ciudad" class="form-control" placeholder="Ciudad">
                 <input type="number" name="anno_fundacion" class="form-control" placeholder="Ano fundacion">
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <div id="campoDelete" class="mb-3" style="display: none;">
+                <label class="form-label">Datos para DELETE:</label>
+                <input type="text" name="nombre_desarrolladora" class="form-control" placeholder="Nombre desarrolladora">
+            </div>
+            <button id="campoBoton" type="submit" class="btn btn-primary" style="display: none;">Enviar</button>
         </form>
     </div>
 
@@ -48,32 +81,34 @@
             // } catch (Exception $e) {
             //     echo "Error al realizar la solicitud " . $e->getMessage();
             // }
-        } else if ($metodo == "POST") {
-            //mandamos un post, contruimos URL
-            $datos = [
-                "nombre_desarrolladora" => $_POST["nombre_desarrolladora"],
-                "ciudad" => $_POST["ciudad"],
-                "anno_fundacion" => $_POST["anno_fundacion"]
-            ];
-        } else if ($metodo == "PUT") {
-            //buscar que exista el nombre empresa
-            $nombre_desarrolladora = isset($_POST["nombre_desarrolladora"]) && !empty($_POST["nombre_desarrolladora"]) ? $_POST["nombre_desarrolladora"] : "";
-
-            $datos = [
-                "nombre_desarrolladora" => $_POST["nombre_desarrolladora"],
-                "ciudad" => $_POST["ciudad"],
-                "anno_fundacion" => $_POST["anno_fundacion"]
-            ];
-        } elseif ($metodo === "DELETE") {
-            $nombre_desarrolladora = isset($_POST["nombre_desarrolladora"]) && !empty($_POST["nombre_desarrolladora"]) ? $_POST["nombre_desarrolladora"] : "";
-
-            $datos = [
-                "nombre_desarrolladora" => $_POST["nombre_desarrolladora"],
-                "ciudad" => $_POST["ciudad"],
-                "anno_fundacion" => $_POST["anno_fundacion"]
-            ];
         }
-        //controlar todo para que esten bien los datos
+        // else if ($metodo == "POST"||$metodo=="PUT"||$metodo=="DELETE") {
+        //     $datos = [
+        //         "nombre_desarrolladora" => $_POST["nombre_desarrolladora"],
+        //         "ciudad" => $_POST["ciudad"],
+        //         "anno_fundacion" => $_POST["anno_fundacion"]
+        //     ];
+        // } 
+        // else if ($metodo == "PUT") {
+        //     $datos = [
+        //         "nombre_desarrolladora" => $_POST["nombre_desarrolladora"],
+        //         "ciudad" => $_POST["ciudad"],
+        //         "anno_fundacion" => $_POST["anno_fundacion"]
+        //     ];
+        // } elseif ($metodo == "DELETE") {
+        //     $datos = [
+        //         "nombre_desarrolladora" => $_POST["nombre_desarrolladora"],
+        //         "ciudad" => $_POST["ciudad"],
+        //         "anno_fundacion" => $_POST["anno_fundacion"]
+        //     ];
+        // }
+
+        $datos = [
+            "nombre_desarrolladora" => $_POST["nombre_desarrolladora"],
+            "ciudad" => $_POST["ciudad"],
+            "anno_fundacion" => $_POST["anno_fundacion"]
+        ];
+
         $opciones = [
             "http" => [
                 "header" => "Content-Type: application/jason",

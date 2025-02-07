@@ -1,0 +1,17 @@
+crear nucleo API
+GET POST DELETE
+GET: if (isempty(videojuego)){
+    RES: toda la tabla
+} else {
+    RES: claves primarias??? (id)
+}
+POST: if(isset(EVERYTHING)){
+    POST everything
+}
+DELETE: if(isset(videojuego)){
+    delete videojuego
+} else if(videojuego == ADMIN) {
+    delete EVERYTHING
+} else {
+    nothing
+}

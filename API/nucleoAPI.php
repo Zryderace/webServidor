@@ -99,6 +99,7 @@ function controlPut($_conexion, $entrada)
             try {
                 $consulta = "UPDATE desarrolladoras SET ciudad = :c, anno_fundacion = :a WHERE nombre_desarrolladora = :nombre";
                 $stmt = $_conexion->prepare($consulta);
+                //si lo hace true si no false
                 $stmt->execute([
                     "nombre" => $entrada["nombre_desarrolladora"],
                     "c" => $entrada["ciudad"],

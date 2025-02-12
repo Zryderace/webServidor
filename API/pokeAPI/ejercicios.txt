@@ -1,0 +1,4 @@
+Lista con 10 pokimones
+    consulta con los 10 primeros pokimones
+    primera letra del nombre en mayuscula (ucfirst)
+    
